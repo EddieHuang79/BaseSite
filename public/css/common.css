@@ -1,0 +1,87 @@
+.sub-nav{
+	padding-left: 40px;
+	display: none;
+}
+
+.caret{
+	float: right;
+	margin-top: 5px;
+}
+
+.pic_block{
+	margin: 0px auto;
+}
+
+.removeLabel{
+	color: red;
+	cursor: pointer;
+	width: 20px;
+}
+
+#Verify{
+	overflow: auto;
+}
+
+#Verify>div{
+	float: left;
+	font-size: 25pt;
+	margin-right: 5px;
+}
+
+#container{
+	width: 30%;
+	margin: 0px auto;
+}
+
+#container>form>div,input{
+	margin-bottom: 5px;
+}
+
+.error{
+	font-size: 16pt;
+	color: #a94442;
+}
+
+.auth-td{
+	overflow: auto;
+}
+
+.auth-td>div{
+	width: 25%;
+	margin: 5px;
+	float: left;
+}
+
+.auth{
+	list-style-type: none;
+}
+
+#search_form{
+	background-color: #eee;
+	padding: 1px;
+	display: none;
+}
+
+#search_form>div{
+	margin: 3px;
+}
+
+#search_tool{
+	width: 100%;
+	overflow: auto;
+}
+
+.search_block{
+	float: left;
+	overflow: auto;
+	margin: 10px;
+}
+
+.search_block>li{
+	float: left;
+	margin-right: 5px;
+}
+
+.ShowHide{
+	margin-right: 5px;
+}
