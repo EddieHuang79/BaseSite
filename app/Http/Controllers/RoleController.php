@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\logistics\Role_logistics;
-use App\logistics\Service_logistics;
-use App\logistics\Redis_tool;
+use App\logic\Role_logic;
+use App\logic\Service_logic;
+use App\logic\Redis_tool;
 
 class RoleController extends Controller
 {
@@ -19,7 +19,7 @@ class RoleController extends Controller
 
         // get now page
 
-        Service_logistics::get_service_id_by_url_and_save( $request->path() );
+        Service_logic::get_service_id_by_url_and_save( $request->path() );
 
         // search bar setting
 
@@ -27,7 +27,7 @@ class RoleController extends Controller
 
         Redis_tool::set_search_tool( $search_tool );
 
-        $role = Role_logistics::get_role_list( $_GET );
+        $role = Role_logic::get_role_list( $_GET );
  
         $assign_page = "role/role_list";
 
@@ -49,9 +49,9 @@ class RoleController extends Controller
  
         $assign_page = "role/role_input";
 
-        $menu_data = Service_logistics::get_active_service();
+        $menu_data = Service_logic::get_active_service();
 
-        $menu_list = Service_logistics::menu_format( $menu_data );
+        $menu_list = Service_logic::menu_format( $menu_data );
 
         $data = compact('role', 'assign_page', 'menu_list');
 
@@ -73,21 +73,21 @@ class RoleController extends Controller
             
             // role
 
-            $data = Role_logistics::update_format( $_POST );
+            $data = Role_logic::update_format( $_POST );
 
             $role_id = intval($_POST["role_id"]);
 
-            Role_logistics::edit_role( $data, $role_id );
+            Role_logic::edit_role( $data, $role_id );
 
             // role service delete add
 
-            Role_logistics::delete_role_service( $role_id ) ;
+            Role_logic::delete_role_service( $role_id ) ;
 
             if (!empty($_POST["auth"])) 
             {
-                $data = Role_logistics::add_role_service_format( $role_id, 0, $_POST["auth"] );
+                $data = Role_logic::add_role_service_format( $role_id, 0, $_POST["auth"] );
 
-                Role_logistics::add_role_service( $data );
+                Role_logic::add_role_service( $data );
             }
 
         }
@@ -95,17 +95,17 @@ class RoleController extends Controller
         {
             // role
 
-            $data = Role_logistics::insert_format( $_POST );
+            $data = Role_logic::insert_format( $_POST );
          
-            $role_id = Role_logistics::add_role( $data );
+            $role_id = Role_logic::add_role( $data );
 
             // role service add
             
             if (!empty($_POST["auth"])) 
             {
-                $data = Role_logistics::add_role_service_format( $role_id, 0, $_POST["auth"] );
+                $data = Role_logic::add_role_service_format( $role_id, 0, $_POST["auth"] );
 
-                $data = Role_logistics::add_role_service( $data );
+                $data = Role_logic::add_role_service( $data );
             }
 
         }
@@ -134,17 +134,17 @@ class RoleController extends Controller
     public function edit( $id )
     {
 
-        $role = Role_logistics::get_role( $id );
+        $role = Role_logic::get_role( $id );
  
         $assign_page = "role/role_input";
 
-        $menu_data = Service_logistics::get_active_service();
+        $menu_data = Service_logic::get_active_service();
 
-        $menu_list = Service_logistics::menu_format( $menu_data );
+        $menu_list = Service_logic::menu_format( $menu_data );
 
-        $role_service_data = Role_logistics::get_role_service( $id );
+        $role_service_data = Role_logic::get_role_service( $id );
 
-        $role_service = Service_logistics::role_auth_format( $role_service_data );
+        $role_service = Service_logic::role_auth_format( $role_service_data );
 
         $data = compact('role', 'assign_page', 'menu_list', 'role_service');
 

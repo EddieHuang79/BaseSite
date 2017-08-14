@@ -4,13 +4,13 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Session;
-use App\logistics\Web_cht;
-use App\logistics\Login;
-use App\logistics\Redis_tool;
-use App\logistics\Admin_user_logistics;
-use App\logistics\Service_logistics;
-use App\logistics\Role_logistics;
-use App\logistics\Basetool;
+use App\logic\Web_cht;
+use App\logic\Login;
+use App\logic\Redis_tool;
+use App\logic\Admin_user_logic;
+use App\logic\Service_logic;
+use App\logic\Role_logic;
+use App\logic\Basetool;
 
 class Autoload extends Basetool
 {
@@ -24,7 +24,7 @@ class Autoload extends Basetool
 
         $Login_user = Session::get('Login_user');
 
-        $Role_data = Admin_user_logistics::get_user_role_by_id( $Login_user["user_id"] );
+        $Role_data = Admin_user_logic::get_user_role_by_id( $Login_user["user_id"] );
 
         $Role_array = !empty($Role_data) ? $_this->get_object_or_array_key($Role_data) : array();
 
@@ -32,15 +32,15 @@ class Autoload extends Basetool
 
         /* get user role as redis key */
 
-        $data = Service_logistics::menu_list($Role_array);
+        $data = Service_logic::menu_list($Role_array);
 
-        $service_list = Service_logistics::menu_format($data);
+        $service_list = Service_logic::menu_format($data);
 
         $service_id = Session::get('service_id') ? intval(Session::get('service_id')) : 0 ;
 
         $service_id = isset($_GET["service_id"]) ? intval($_GET["service_id"]) : $service_id ;
 
-        $auth_check = $service_id > 0 ? Service_logistics::auth_check($service_id, $service_list) : true;
+        $auth_check = $service_id > 0 ? Service_logic::auth_check($service_id, $service_list) : true;
 
         !$auth_check ? header("Location: /index") : "" ;
 
@@ -91,7 +91,7 @@ class Autoload extends Basetool
 
         $search_tool = Redis_tool::get_search_tool();
 
-        $active_role_list = Role_logistics::get_active_role();
+        $active_role_list = Role_logic::get_active_role();
 
         $data = compact('search_tool', 'active_role_list');
 

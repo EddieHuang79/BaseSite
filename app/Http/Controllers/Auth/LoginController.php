@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\logistics\Verifycode;
+use App\logic\Verifycode;
 use Illuminate\Support\Facades\Session;
-use App\logistics\Login;
-use App\logistics\Redis_tool;
+use App\logic\Login;
+use App\logic\Redis_tool;
 
 class LoginController extends Controller
 {

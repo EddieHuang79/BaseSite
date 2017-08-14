@@ -3,7 +3,7 @@
 namespace App\model;
 
 use Illuminate\Support\Facades\DB;
-use App\logistics\Redis_tool;
+use App\logic\Redis_tool;
 
 class Admin_user
 {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\logistics\Redis_tool;
+use App\logic\Redis_tool;
 
 class RecordController extends Controller
 {

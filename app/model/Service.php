@@ -5,7 +5,7 @@ namespace App\model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use App\logistics\Redis_tool;
+use App\logic\Redis_tool;
 
 class Service
 {

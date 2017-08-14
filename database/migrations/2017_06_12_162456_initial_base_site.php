@@ -56,6 +56,7 @@ class InitialBaseSite extends Migration
             $table->string('link');
             $table->integer('parents_id');
             $table->integer('status')->index();
+            $table->integer('public')->default(2);
             $table->integer('sort');
             $table->timestamps();
         });
