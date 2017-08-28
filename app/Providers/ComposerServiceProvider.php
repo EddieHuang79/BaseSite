@@ -22,6 +22,7 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('webbase.nav', 'App\Http\ViewComposers\Autoload@GetTxt');
         View::composer('webbase.search_tool', 'App\Http\ViewComposers\Autoload@GetTxt');
         View::composer('webbase.search_tool', 'App\Http\ViewComposers\Autoload@SearchTool');
+        View::composer('index', 'App\Http\ViewComposers\Autoload@GetTxt');
     }
 
     /**

@@ -1,1 +1,1 @@
-<h2 class="sub-header">FileCloud</h2>
+<h2 class="sub-header">{{ $txt['Site'] }}</h2>
